@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Slider Basico | HTML y JQuery</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+		}
+
+
+
+		/***********************************************SLIDER***********************************************/
+		section.slider {
+			width: 1000px;
+			height: 550px;
+			position: relative;
+			margin: auto;
+			overflow: hidden;
+		}
+		.slider > ul {
+			width: 1000px;
+			display: flex;
+			list-style: none;
+			margin-left: -100%;
+		}
+		.slider img {
+			width: 1000px;
+		}
+		.siguiente, .anterior {
+			position: absolute;
+			font-size: 30px;
+			top: 250px;
+			background-color: rgba(0,0,0,0.5);
+			color: white;
+			padding: 5px 15px;
+			cursor: pointer;
+			border: none;
+		}
+		.siguiente {
+			right: 10px;
+		}
+		.anterior {
+			left: 10px;
+		}
+	</style>
+</head>
+<body>
+	<section class="slider">	
+		<ul>
+			<li><img src="img/ban1.jpg" alt=""></li>
+			<li><img src="img/ban2.jpg" alt=""></li>
+			<li><img src="img/ban3.jpg" alt=""></li>
+			<li><img src="img/ban4.jpg" alt=""></li>
+		</ul>
+		<button class="anterior">&lt</button>
+		<button class="siguiente">&gt</button>
+	</section>
+	<script>
+		$("li:last").insertBefore("li:first");
+		$(".siguiente").click(function(){
+			$(".slider ul").animate({
+				marginLeft : "-200%"
+			},1000, function(){
+				$("li:first").insertAfter("li:last");
+				$(".slider ul").css("margin-left" , "-100%");
+			});
+		});
+		$(".anterior").click(function(){
+			$(".slider ul").animate({
+				marginLeft : "0%"
+			},1000, function(){
+				$("li:last").insertBefore("li:first");
+				$(".slider ul").css("margin-left" , "-100%");
+			});
+		});
+	</script>
+</body>
+</html>
